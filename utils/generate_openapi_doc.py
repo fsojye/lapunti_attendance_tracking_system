@@ -2,7 +2,7 @@ import json
 
 from fastapi.openapi.utils import get_openapi
 
-from event import app
+from src.event import app
 
 doc = json.dumps(
     get_openapi(
