@@ -10,8 +10,7 @@ class AttendancePostImagesController:
         self._file_storage_service = file_storage_service
 
     def execute(self, image_paths: list[str]) -> str:
-        self.__execute(image_paths)
+        return self.__execute(image_paths)
 
     def __execute(self, image_paths: list[str]) -> str:
-        for image_path in image_paths:
-            continue
+        return ", ".join(image_paths)

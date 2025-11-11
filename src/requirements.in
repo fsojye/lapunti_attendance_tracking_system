@@ -3,3 +3,6 @@ uvicorn
 mangum
 pydantic
 --no-binary=pydantic
+
+ruff
+mypy
