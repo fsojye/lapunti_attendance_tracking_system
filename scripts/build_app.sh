@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-ACTION=$1
+ACTION=${1:-}
 
 if [ -z "$ACTION" ] || [[ ! "$ACTION" =~ ^(check|fix)$ ]]; then
   echo "Usage: $0 <check|fix>"
