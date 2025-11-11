@@ -6,3 +6,6 @@ pydantic
 
 ruff
 mypy
+
+pytest
+pytest-cov

@@ -3,28 +3,10 @@ set -euo pipefail
 
 ACTION=${1:-}
 
-if [ -z "$ACTION" ] || [[ ! "$ACTION" =~ ^(check|fix)$ ]]; then
-  echo "Usage: $0 <check|fix>"
-  exit 1
-fi
+./scripts/build_dependencies.sh install
 
-APP_DIR="src"
+./scripts/format_code.sh check
 
-echo "Type checking python code"
-mypy $APP_DIR --config-file $APP_DIR/pyproject.toml
+./scripts/test_app.sh unit_test
 
-if [[ "$ACTION" == "check" ]]; then
-  echo "Format checking python code"
-  ruff check  $APP_DIR --config $APP_DIR/pyproject.toml
-fi
-
-if [[ "$ACTION" == "fix" ]]; then
-  echo "Formatting python code"
-  ruff check  $APP_DIR --config $APP_DIR/pyproject.toml --fix
-  ruff format  $APP_DIR --config $APP_DIR/pyproject.toml
-fi
-
-if [[ $? -ne 0 ]]; then
-  echo "Formatting issues found"
-  exit $?
-fi
+./scripts/test_app.sh integration_test
